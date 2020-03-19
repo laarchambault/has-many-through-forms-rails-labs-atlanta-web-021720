@@ -1,1 +1,23 @@
 
+<h1> <%= @post.title %></h1>
+<% if !@post.categories.empty? %>
+    <h2>   Categories </h2>
+    <% @post.categories.each do |category| %>
+        <%= category.name %>
+    <% end %>
+<% end %><br><br><br>
+<%= @post.content%><br><br><br>
+<h2>   Comments</h2>
+<% if @post.comments.empty? %>
+Be the first to comment!
+<% end %>
+<% @post.users.each do |user| %>
+    Comments from: <%= user.username %>
+    <ul>
+    <% user.comments.each do |comment| %>
+        <% if comment.post = @post %>
+            <% comment.content%>
+        <% end %><br>
+    <% end %>
+    </ul>
+<% end %>
